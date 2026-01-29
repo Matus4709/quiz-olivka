@@ -1,0 +1,374 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #1c1f2b, #0f1117 45%, #0b0d12);
+  color: #f4f6f8;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+}
+
+.app {
+  width: min(920px, 95vw);
+  display: grid;
+  gap: 20px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e7eaee, #9aa3ad);
+  color: #0b0d12;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 20px;
+  box-shadow: 0 12px 20px rgba(63, 63, 55, 0.45);
+}
+
+.logo-title {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.logo-subtitle {
+  font-size: 13px;
+  color: rgba(244, 246, 248, 0.7);
+}
+
+.topbar-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  background: rgba(17, 20, 26, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #f4f6f8;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+.progress-track {
+  height: 10px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #e7eaee, #9aa3ad);
+  transition: width 0.4s ease;
+}
+
+.card {
+  background: rgba(17, 20, 26, 0.88);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  animation: floatIn 0.5s ease;
+}
+
+.question-section {
+  margin-bottom: 20px;
+}
+
+.question-label {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: rgba(244, 246, 248, 0.6);
+  margin-bottom: 8px;
+}
+
+#questionText {
+  font-size: 24px;
+  line-height: 1.35;
+  color: #f4f6f8;
+}
+
+.answers {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.answer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s ease, border 0.2s ease, background 0.2s ease;
+  font-weight: 600;
+  color: #f4f6f8;
+  animation: riseIn 0.35s ease both;
+}
+
+.answer:hover {
+  transform: translateY(-2px);
+  border-color: rgba(231, 234, 238, 0.6);
+}
+
+.answer .letter {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 800;
+  color: #f4f6f8;
+}
+
+.answer.selected {
+  border-color: #e7eaee;
+  background: rgba(231, 234, 238, 0.12);
+}
+
+.answer.correct {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.2);
+  color: #f4f6f8;
+  box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.35);
+}
+
+.answer.incorrect {
+  border-color: #f97316;
+  background: rgba(249, 115, 22, 0.2);
+  color: #f4f6f8;
+  box-shadow: inset 0 0 0 2px rgba(249, 115, 22, 0.45);
+}
+
+.feedback {
+  min-height: 28px;
+  font-weight: 700;
+  color: #f4f6f8;
+  animation: fadeIn 0.3s ease;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  background: rgba(231, 234, 238, 0.15);
+  color: #f4f6f8;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #e7eaee, #9aa3ad);
+  color: #0b0d12;
+  box-shadow: 0 12px 22px rgba(231, 234, 238, 0.25);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.score-card {
+  background: rgba(17, 20, 26, 0.9);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  gap: 12px;
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.45);
+  animation: floatIn 0.5s ease;
+}
+
+.score-card.animate {
+  animation: floatIn 0.5s ease, fadeIn 0.4s ease;
+}
+
+.score-card h2 {
+  font-size: 22px;
+}
+
+.final-message {
+  font-size: 15px;
+  color: rgba(244, 246, 248, 0.8);
+}
+
+.gif-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.gif-wrap img {
+  width: min(240px, 70vw);
+  border-radius: 16px;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.35);
+  animation: popIn 0.6s ease, glowPulse 2.4s ease-in-out infinite;
+}
+
+.progress-fill {
+  animation: progressPulse 2s ease-in-out infinite;
+}
+
+.card.animate {
+  animation: cardSwap 0.35s ease;
+}
+
+.answer.correct {
+  animation: popIn 0.35s ease;
+}
+
+.answer.incorrect {
+  animation: shake 0.35s ease;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 24px;
+  }
+
+  #questionText {
+    font-size: 20px;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+  }
+  50% {
+    box-shadow: 0 20px 38px rgba(231, 234, 238, 0.25);
+  }
+}
+
+@keyframes cardSwap {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progressPulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
